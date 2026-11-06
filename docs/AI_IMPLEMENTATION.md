@@ -8,7 +8,7 @@ Mawacara AI uses `server/src/rag/pipeline.ts` to coordinate retrieval, generatio
 2. `classifier.ts` detects categories, language, location mentions, and customary-rule or fabrication requests using keyword rules.
 3. Follow-ups shorter than five words reuse the previous user question for retrieval. Query translation and a domain glossary help reach sources in the other language. Translation affects retrieval, not the original rule text.
 4. Query vectors use `Xenova/multilingual-e5-small`, quantised ONNX, mean pooling, L2 normalisation, and 384 dimensions. The indexed vectors must use the same model as queries.
-5. Search includes Canggu, Badung, Bali, and Indonesia scopes and excludes expired sources. The current store can be file-backed or PostgreSQL/pgvector; Vercel explicitly uses `KB_SOURCE=files` with 120 precomputed chunks. Both source languages are searchable.
+5. Search includes Canggu, Badung, Bali, and Indonesia scopes and excludes expired sources. The current store can be file-backed or PostgreSQL/pgvector; Vercel uses Supabase with `KB_SOURCE=pgvector`, 24 documents, and 120 precomputed chunks. Both source languages are searchable.
 6. Candidates need similarity at least 0.80 and either a matching category or similarity at least 0.86. Applicability and background-content penalties adjust ranking. Up to three chunks within 0.03 of the best adjusted rank become model context.
 
 These thresholds are configuration defaults, not calibrated probabilities. Keyword rules and retrieval can miss relevant sources or select related passages that do not answer the question.
@@ -36,7 +36,7 @@ The response also has a separate `generation_mode`: `llm`, `extractive`, or `fal
 
 Source classification, verification status, applicability, dates, and warning flags come from metadata. For sourced LLM answers, the first cited legal passage is available in its original language. Extractive answers preserve contiguous source text and exceptions within enumerations. General-knowledge answers have no source quote.
 
-No current document is human-verified or community-verified. The Canggu awig-awig is an unofficial Indonesian translation of the 2012 text with unconfirmed current validity and an unknown original URL. These limitations remain attached to source metadata even though the display title is shorter.
+No current document is human-verified or community-verified. The Canggu awig-awig is an unofficial Indonesian translation of the 2012 text prepared by the Mawacara AI team from the Balinese source at https://jidhat.baliprov.go.id/awig-awig/detail/212. Its current validity still needs local confirmation. These limitations remain attached to source metadata even though the display title is shorter.
 
 User messages are delimited as data, and prompts instruct the model not to invent rules or follow injected instructions. These controls reduce risk; they do not guarantee accurate or injection-proof answers.
 
@@ -46,4 +46,4 @@ Set `LLM_PROVIDER=sumopod`, `SUMOPOD_MODEL=deepseek-v4-flash`, `SUMOPOD_BASE_URL
 
 Tests cover the active controller through both direct validation tests and pipeline scenarios, including grounded/hybrid/general modes, high-risk abstention, invalid citations, language mismatches, and provider failure. Measured LLM evaluation results and their tuning/holdout limitations are in [eval/llm/EVAL_REPORT.md](eval/llm/EVAL_REPORT.md); these checks do not establish paraphrase faithfulness or production accuracy on unseen questions.
 
-Conversation history is held in process memory (up to 500 conversations, six turns each). File feedback on Vercel is temporary and not shared across instances. PostgreSQL is supported but not active in the current deployment.
+Conversation history is held in process memory (up to 500 conversations, six turns each). Production feedback is stored in Supabase PostgreSQL and shared across instances. The activation smoke test confirmed that an API feedback request persisted in the database, then removed only that test record.

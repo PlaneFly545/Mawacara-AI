@@ -205,10 +205,10 @@
   {
     "document_id": "CANGGU-AWIG-2012-ID",
     "title": "Awig-Awig Desa Adat Canggu (naskah 2012)",
-    "publisher": "Unknown translator (file supplied by the Mawacara AI team); source text: Desa Adat Canggu",
+    "publisher": "Desa Adat Canggu melalui JIDHAT Provinsi Bali, terjemahan Bahasa Indonesia oleh tim Mawacara AI",
     "source_type": "OFFICIAL",
     "source_subtype": "customary_law",
-    "source_url": null,
+    "source_url": "https://jidhat.baliprov.go.id/awig-awig/detail/212",
     "all_source_urls": null,
     "location_scope": "canggu",
     "validation_status": "UNDER_REVIEW",
@@ -219,8 +219,7 @@
     "sha256": "ebf35f17f0fbdfdeab43453bd8993e9cf450b3c8dab195278fe246d2f1edcf07",
     "flags": [
       "UNOFFICIAL_TRANSLATION",
-      "EDITION_2012_VALIDITY_UNCONFIRMED",
-      "SOURCE_URL_UNKNOWN"
+      "EDITION_2012_VALIDITY_UNCONFIRMED"
     ],
     "pack_verification": null
   },
@@ -400,7 +399,7 @@
     "publisher": "Mawacara AI team research pilot (compiled from the web sources listed)",
     "source_type": "GENERAL_ADVISORY",
     "source_subtype": "research_summary",
-    "source_url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
+    "source_url": "https://bmc.baliprov.go.id/news/title/tertibkan-turis-asing-yang-berulah-di-bali-gubernur-koster-keluarkan-se-nomor-7-tahun-2025",
     "all_source_urls": [
       {
         "url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
@@ -421,7 +420,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR"
     ],
     "pack_verification": {
@@ -436,7 +434,7 @@
     "publisher": "Mawacara AI team research pilot (compiled from the web sources listed)",
     "source_type": "GENERAL_ADVISORY",
     "source_subtype": "research_summary",
-    "source_url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
+    "source_url": "https://bmc.baliprov.go.id/news/title/tertibkan-turis-asing-yang-berulah-di-bali-gubernur-koster-keluarkan-se-nomor-7-tahun-2025",
     "all_source_urls": [
       {
         "url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
@@ -457,7 +455,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR",
       "LOCAL_REVIEW_REQUIRED"
     ],
@@ -529,7 +526,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "LOCAL_REVIEW_REQUIRED"
     ],
     "pack_verification": {
@@ -611,7 +607,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR"
     ],
     "pack_verification": {
@@ -626,7 +621,7 @@
     "publisher": "Mawacara AI team research pilot (compiled from the web sources listed)",
     "source_type": "GENERAL_ADVISORY",
     "source_subtype": "research_summary",
-    "source_url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
+    "source_url": "https://bmc.baliprov.go.id/news/title/tertibkan-turis-asing-yang-berulah-di-bali-gubernur-koster-keluarkan-se-nomor-7-tahun-2025",
     "all_source_urls": [
       {
         "url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
@@ -647,7 +642,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR"
     ],
     "pack_verification": {
@@ -662,7 +656,7 @@
     "publisher": "Mawacara AI team research pilot (compiled from the web sources listed)",
     "source_type": "GENERAL_ADVISORY",
     "source_subtype": "research_summary",
-    "source_url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
+    "source_url": "https://bmc.baliprov.go.id/news/title/tertibkan-turis-asing-yang-berulah-di-bali-gubernur-koster-keluarkan-se-nomor-7-tahun-2025",
     "all_source_urls": [
       {
         "url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
@@ -683,7 +677,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR"
     ],
     "pack_verification": {
@@ -698,7 +691,7 @@
     "publisher": "Mawacara AI team research pilot (compiled from the web sources listed)",
     "source_type": "GENERAL_ADVISORY",
     "source_subtype": "research_summary",
-    "source_url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
+    "source_url": "https://bmc.baliprov.go.id/news/title/tertibkan-turis-asing-yang-berulah-di-bali-gubernur-koster-keluarkan-se-nomor-7-tahun-2025",
     "all_source_urls": [
       {
         "url": "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf",
@@ -719,7 +712,6 @@
     "language": "en",
     "sha256": null,
     "flags": [
-      "PRIMARY_URL_UNREACHABLE",
       "SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR"
     ],
     "pack_verification": {

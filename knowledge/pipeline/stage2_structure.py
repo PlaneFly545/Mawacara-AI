@@ -263,13 +263,14 @@ def main() -> None:
             "flags": [],
         }
         if did == "CANGGU-AWIG-2012-ID":
-            doc["flags"] += ["UNOFFICIAL_TRANSLATION", "EDITION_2012_VALIDITY_UNCONFIRMED", "SOURCE_URL_UNKNOWN"]
+            doc["flags"] += ["UNOFFICIAL_TRANSLATION", "EDITION_2012_VALIDITY_UNCONFIRMED"]
+            if not doc["source_url"]:
+                doc["flags"].append("SOURCE_URL_UNKNOWN")
         if rec["extraction"]["method"].startswith("ocr"):
             doc["flags"].append("OCR_TEXT")
         if did == "JIDHAT-24":
             doc["flags"].append("OCR_COLUMN_ORDER_ISSUES")
-        pack_urls = [s.get("url") or "" for s in (rec.get("all_source_urls") or [])]
-        if any("disparda.baliprov.go.id" in u for u in pack_urls):
+        if rec.get("source_url") == "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf":
             # SE Gubernur Bali 7/2025 PDF on disparda.baliprov.go.id returned HTTP 404 on 2026-11-04.
             doc["flags"].append("PRIMARY_URL_UNREACHABLE")
         if did in {f"PILOT-{x}" for x in ("PB-001", "PB-002", "PB-003", "TE-001", "TE-002", "TE-003")}:

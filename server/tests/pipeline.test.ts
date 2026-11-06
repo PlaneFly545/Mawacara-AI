@@ -50,7 +50,7 @@ describe('RAG pipeline (v2 knowledge base)', () => {
     // Rule text is quoted in Indonesian, never machine-translated; the frame is English.
     expect(r.quote?.language).toBe('id');
     expect(r.answer).toMatch(/written in Indonesian/);
-    expect(r.caveats.join(' ')).toMatch(/quoted in its original language/);
+    expect(r.caveats.join(' ')).toMatch(/excerpt is shown in Indonesian/);
   });
 
   it('labels the awig-awig as an unofficial 2012 translation and cites the original scan page', async () => {
@@ -59,7 +59,7 @@ describe('RAG pipeline (v2 knowledge base)', () => {
     expect(r.sources[0].id).toBe('CANGGU-AWIG-2012-ID::Pasal-4#1');
     expect(r.sources[0].page_number).toBe(18);
     expect(r.sources[0].page_ref_type).toBe('original_scan_page');
-    expect(r.caveats.join(' ')).toMatch(/terjemahan Indonesia tidak resmi/);
+    expect(r.caveats.join(' ')).toMatch(/terjemahan Bahasa Indonesia oleh tim Mawacara AI/);
     expect(r.recommended_actions[0]).toMatch(/kelian banjar/);
   });
 

@@ -71,8 +71,8 @@ export const MESSAGES = {
     id: 'Ketentuan ini ditujukan kepada badan usaha dan lembaga (misalnya vila, restoran, dan toko), bukan kepada pengunjung perorangan.',
   },
   unofficialTranslation: {
-    en: 'The awig-awig text is an unofficial Indonesian translation of the 2012 edition; whether this edition is still in force has not been confirmed.',
-    id: 'Teks awig-awig adalah terjemahan Indonesia tidak resmi dari naskah edisi 2012; keberlakuan edisi ini belum dikonfirmasi.',
+    en: 'The awig-awig excerpt is an unofficial Indonesian translation prepared by the Mawacara AI team from the Balinese text on JIDHAT. The current validity of the 2012 edition still needs local confirmation.',
+    id: 'Kutipan awig-awig menggunakan terjemahan Bahasa Indonesia oleh tim Mawacara AI dari naskah berbahasa Bali di JIDHAT. Terjemahan ini bukan terjemahan resmi penerbit. Keberlakuan naskah 2012 perlu dikonfirmasi setempat.',
   },
   historical2022: {
     en: 'The noise limits mentioned come from a 2022 agreement; current limits and venue hours may differ.',
@@ -99,7 +99,7 @@ export const MESSAGES = {
     id: 'Jawaban ini adalah ringkasan yang ditulis AI dari sumber yang dikutip. Jika berbeda dengan teks sumber, teks sumber yang berlaku.',
   },
   quotedInOtherLanguage: {
-    en: 'The source is in Indonesian, so it is quoted in its original language rather than machine-translated.',
+    en: 'The excerpt is shown in Indonesian as stored in the knowledge base. Any translation is labelled separately.',
     id: 'Sumber berbahasa Inggris, sehingga dikutip dalam bahasa aslinya, bukan diterjemahkan mesin.',
   },
   weakMatch: {
@@ -138,10 +138,11 @@ export function sourceFrame(chunk: KbChunk, lang: Language): string {
   const where = chunk.articles.length ? ` (${chunk.articles.join(', ')})` : '';
   const topic = CATEGORY_TEXT[chunk.category][lang];
   const sameLanguage = chunk.language === lang;
+  const translated = chunk.flags.includes('UNOFFICIAL_TRANSLATION');
   if (lang === 'en') {
-    const tail = sameLanguage ? 'The relevant passage is quoted below.' : 'It is written in Indonesian; the relevant passage is quoted below in its original wording.';
+    const tail = translated ? 'The Indonesian translation of the relevant passage is quoted below.' : sameLanguage ? 'The relevant passage is quoted below.' : 'It is written in Indonesian; the relevant passage is quoted below in its original wording.';
     return `The most relevant source on ${topic} is ${kind}: ${chunk.document_title}${where}. ${tail}`;
   }
-  const tail = sameLanguage ? 'Bagian yang relevan dikutip di bawah.' : 'Sumber ini berbahasa Inggris; bagian yang relevan dikutip di bawah dalam bahasa aslinya.';
+  const tail = translated ? 'Bagian terjemahan Bahasa Indonesia yang relevan dikutip di bawah.' : sameLanguage ? 'Bagian yang relevan dikutip di bawah.' : 'Sumber ini berbahasa Inggris; bagian yang relevan dikutip di bawah dalam bahasa aslinya.';
   return `Sumber yang paling relevan tentang ${topic} adalah ${kind}: ${chunk.document_title}${where}. ${tail}`;
 }

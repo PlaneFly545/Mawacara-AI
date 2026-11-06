@@ -3,7 +3,7 @@ doc_id: "PILOT-TE-002"
 title: "Basic Road Safety and Traffic Compliance"
 group: "D. Public behavior & traffic knowledge pack, expanded with Canggu entries (desk research, English)"
 publisher: "LocalNorm team research pilot (compiled from the web sources listed)"
-source_url: "https://disparda.baliprov.go.id/wp-content/uploads/2025/04/SE-NO-7-TAHUN-2025-TENTANG-TATA-TERTIB-WISATAWAN-ASING.pdf"
+source_url: "https://bmc.baliprov.go.id/news/title/tertibkan-turis-asing-yang-berulah-di-bali-gubernur-koster-keluarkan-se-nomor-7-tahun-2025"
 local_file: "Database/bali_public_behavior_traffic_knowledge 2/structured/public_behavior_traffic_knowledge.json"
 sha256: null
 source_type_hint: "Mixed: summary written by the research pilot from official and secondary sources"

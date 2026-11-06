@@ -250,7 +250,7 @@ def canggu_records() -> list[tuple[dict, list[str] | None]]:
             "doc_id": "CANGGU-AWIG-2012-ID",
             "group": "B. Desa Adat Canggu (customary documents)",
             "title": "Awig-Awig Desa Adat Canggu (naskah 2012)",
-            "publisher": "Unknown translator (file supplied by the Mawacara AI team); source text: Desa Adat Canggu",
+            "publisher": "Desa Adat Canggu melalui JIDHAT Provinsi Bali, terjemahan Bahasa Indonesia oleh tim Mawacara AI",
             "source_url": None,
             "retrieved_at": None,
             "local_file": str(awig_tr.relative_to(ROOT)).replace("\\", "/"),
@@ -365,13 +365,16 @@ def header(rec: dict) -> str:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     inventory = []
+    overrides = json.loads((ROOT / "knowledge" / "source_overrides.json").read_text(encoding="utf-8"))
     for rec, pages in jidhat_records() + canggu_records():
+        rec.update(overrides.get(rec["doc_id"], {}))
         if pages is not None:
             text = process_pdf_doc(rec, pages)
             (OUT / f"{rec['doc_id']}.md").write_text(header(rec) + text + "\n", encoding="utf-8")
             rec["output_file"] = f"knowledge/processing/stage1_extracted/{rec['doc_id']}.md"
         inventory.append(rec)
     for rec, text in pilot_records():
+        rec.update(overrides.get(rec["doc_id"], {}))
         rec["extraction"].update(chars_clean=len(text))
         (OUT / f"{rec['doc_id']}.md").write_text(header(rec) + text + "\n", encoding="utf-8")
         rec["output_file"] = f"knowledge/processing/stage1_extracted/{rec['doc_id']}.md"

@@ -53,10 +53,18 @@ describe('v2 knowledge base integrity', () => {
     }
   });
 
-  it('gives every official source a URL except the awig-awig, whose origin is unknown and flagged', () => {
+  it('links every official source and preserves the awig translation limits', () => {
+    const awig = docs.find((d) => d.document_id === 'CANGGU-AWIG-2012-ID')!;
+    expect(awig.source_url).toBe('https://jidhat.baliprov.go.id/awig-awig/detail/212');
+    expect(awig.publisher).toContain('Mawacara AI');
+    expect(awig.flags).not.toContain('SOURCE_URL_UNKNOWN');
+    expect(awig.flags).toContain('UNOFFICIAL_TRANSLATION');
+    for (const chunk of chunks.filter((c) => c.document_id === awig.document_id)) {
+      expect(chunk.flags).not.toContain('SOURCE_URL_UNKNOWN');
+      expect(chunk.flags).toContain('UNOFFICIAL_TRANSLATION');
+    }
     for (const d of docs.filter((x) => x.source_type === 'OFFICIAL')) {
-      if (d.document_id === 'CANGGU-AWIG-2012-ID') expect(d.flags).toContain('SOURCE_URL_UNKNOWN');
-      else expect(d.source_url).toMatch(/^https:\/\//);
+      expect(d.source_url).toMatch(/^https:\/\//);
     }
   });
 });

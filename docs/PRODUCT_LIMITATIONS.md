@@ -4,7 +4,7 @@
 
 1. **Nothing is VERIFIED** and nothing is COMMUNITY_VERIFIED. Official texts are `UNDER_REVIEW`, research-pack summaries `UNVERIFIED`.
 2. **Awig-Awig Desa Adat Canggu:** an unofficial Indonesian translation (made via OCR of the Latin-script Balinese text) of the
-   **2012 edition**; whether it is still in force is not confirmed; its source URL is unknown. Desa Adat Canggu has not reviewed it.
+   **2012 edition**; whether it is still in force is not confirmed; the original Balinese text is available on [JIDHAT](https://jidhat.baliprov.go.id/awig-awig/detail/212) and the Indonesian translation was prepared by the Mawacara AI team. Desa Adat Canggu has not reviewed it.
 3. Articles of the awig-awig with no explicit subject are tagged `krama_adat` (conservative); answers present them as local
    practice, not as visitor obligations. This default has not been reviewed article by article.
 4. Category and applicability metadata were assigned by keyword rules (sample precision roughly two in three before tightening);
@@ -24,7 +24,7 @@
     knowledge (labelled "General knowledge · no source"). Nobody has checked these answers; they can be wrong or too
     general for Canggu. The risk policy that allows them is a keyword rule set and can misclassify a question.
 
-The v1 list below is historical and does not describe the current knowledge base or deployment. Current deployment: Vercel frontend and API at https://mawacara.vercel.app, file-backed knowledge with 120 chunks, temporary conversation history and feedback. See [DEPLOYMENT.md](DEPLOYMENT.md).
+The v1 list below is historical and does not describe the current knowledge base or deployment. Current deployment: Vercel frontend and API at https://mawacara.vercel.app, Supabase pgvector with 120 chunks, temporary conversation history, and persistent PostgreSQL feedback. See [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Knowledge & validation
 
@@ -54,4 +54,4 @@ The v1 list below is historical and does not describe the current knowledge base
 ## Product
 
 17. The problem statement is a **hypothesis**; there is no user research yet.
-18. LocalNorm is not legal advice and is not a substitute for asking local people. It does not and cannot resolve conflicts or address overtourism.
+18. Mawacara AI is not legal advice and is not a substitute for asking local people. It does not and cannot resolve conflicts or address overtourism.

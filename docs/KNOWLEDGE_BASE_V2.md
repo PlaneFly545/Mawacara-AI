@@ -33,7 +33,7 @@ Without `DATABASE_URL` the server reads the same stage-4 vectors from `knowledge
 | Group | Documents | Extraction |
 |---|---|---|
 | A. JIDHAT Provinsi Bali (`jidhat.baliprov.go.id/hukum-negara`, downloaded 2026-11-04) | 24 regulations / circulars | 18 text layer, 6 OCR (Windows OCR, English engine). All 24 SHA-256 match the download index |
-| B. Desa Adat Canggu | Pararem No. 3/2025 (waste); Awig-Awig 2012 — unofficial Indonesian translation + original scan | Pararem URL confirmed by downloading it from `jidhat.baliprov.go.id/storage/perarem/…` and matching SHA-256. Awig-awig origin URL unknown; the 122-page Balinese scan is kept as citation target only |
+| B. Desa Adat Canggu | Pararem No. 3/2025 (waste); Awig-Awig 2012 — unofficial Indonesian translation + original scan | Pararem URL confirmed by downloading it from `jidhat.baliprov.go.id/storage/perarem/…` and matching SHA-256. Awig-awig source supplied by the team: https://jidhat.baliprov.go.id/awig-awig/detail/212, translated from Balinese to Indonesian by the Mawacara AI team; the 122-page Balinese scan is kept as citation target only |
 | C. Cultural research pilot | 5 entries (Tri Hita Karana, canang sari, sacred places, desa adat, Galungan) | Structured JSON |
 | D. Public behaviour & traffic pack ("…knowledge 2") | 9 entries incl. 3 Canggu entries | Structured JSON; superset of "…knowledge" (6 identical entries), so only the expanded pack is used |
 
@@ -46,7 +46,7 @@ Cleaning removes running headers/footers (lines on ≥40 % of pages), page numbe
 - Category and `applicable_to` are assigned by transparent keyword rules (reviewable), with these safeguards: a conduct rule must contain obligation/prohibition/sanction wording; administrative, financial, inheritance/marriage articles are excluded; glossary articles are filtered per definition.
 - `applicable_to`: `everyone`, `foreign_tourist`, `domestic_tourist`, `tamiu` (non-members incl. foreigners — Pararem Pasal 1), `krama_tamiu`, `krama_adat`, `business`. **Awig-awig articles with no explicit subject default to `krama_adat`** (Gate 2: conservative).
 - Source classes: JIDHAT, Pararem, Awig-awig → `OFFICIAL` (`government_regulation` / `customary_law`); research packs → `GENERAL_ADVISORY`. Status: `UNDER_REVIEW` (official) / `UNVERIFIED` (packs). **Nothing is `VERIFIED`; nothing is `COMMUNITY_VERIFIED`.**
-- Flags travel with every chunk: `UNOFFICIAL_TRANSLATION`, `EDITION_2012_VALIDITY_UNCONFIRMED`, `SOURCE_URL_UNKNOWN`, `OCR_TEXT`, `OCR_COLUMN_ORDER_ISSUES`, `LOCAL_REVIEW_REQUIRED`, `HISTORICAL_2022_AGREEMENT`, `PRIMARY_URL_UNREACHABLE`, `SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR`.
+- Flags travel with every chunk: `UNOFFICIAL_TRANSLATION`, `EDITION_2012_VALIDITY_UNCONFIRMED`, `OCR_TEXT`, `OCR_COLUMN_ORDER_ISSUES`, `LOCAL_REVIEW_REQUIRED`, `HISTORICAL_2022_AGREEMENT`, `PRIMARY_URL_UNREACHABLE`, `SUMMARY_OF_FOREIGN_TOURIST_CIRCULAR`.
 - Awig-awig `page_number` = page of the **original scan** where the article starts (translation pages carry `RUJUKAN: PDF SUMBER HALAMAN n`).
 
 ## Stage 3 — Chunking

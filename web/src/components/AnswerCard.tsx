@@ -21,6 +21,8 @@ export function AnswerCard({ response, messageId }: { response: ChatResponse; me
   const s = t(lang);
   const [feedback, setFeedback] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
   const status = STATUS_STYLE[response.retrieval_status];
+  const quoteSource = response.sources.find((source) => source.id === response.quote?.source_id);
+  const translatedQuote = quoteSource?.flags.includes('UNOFFICIAL_TRANSLATION');
 
   async function rate(rating: 'helpful' | 'not_helpful') {
     setFeedback('sending');
@@ -66,8 +68,7 @@ export function AnswerCard({ response, messageId }: { response: ChatResponse; me
         <p className="whitespace-pre-line text-[16px] leading-relaxed text-bone">{response.answer}</p>
       </section>
 
-      {/* Verbatim source text, always in its original language (never machine-translated).
-          Extractive answers ARE the quote, so it stays open; next to an LLM answer it is folded so the reply reads naturally. */}
+      {/* Extractive answers keep the excerpt open. LLM summaries keep it available on demand. */}
       {response.quote && (
         <details
           open={response.generation_mode !== 'llm'}
@@ -75,7 +76,7 @@ export function AnswerCard({ response, messageId }: { response: ChatResponse; me
         >
           <summary className={`${sectionTitle} mb-0 cursor-pointer list-none group-open:mb-2`}>
             <Quote className="size-3.5" aria-hidden />
-            {response.generation_mode === 'llm' ? s.showQuote : s.quoteTitle} · {s.quoteLang[response.quote.language]}
+            {translatedQuote ? s.translationQuote : response.generation_mode === 'llm' ? s.showQuote : s.quoteTitle} · {s.quoteLang[response.quote.language]}
             <ChevronDown className="size-3.5 transition-transform group-open:rotate-180" aria-hidden />
           </summary>
           <blockquote lang={response.quote.language} className="whitespace-pre-line border-l-2 border-fog/40 pl-3 text-sm leading-relaxed text-mist">
@@ -158,7 +159,7 @@ export function AnswerCard({ response, messageId }: { response: ChatResponse; me
           <FileText className="size-3.5" aria-hidden /> {s.sources}
         </h3>
         {response.sources.length === 0 ? (
-          <p className="text-sm text-ash">{s.noSources}</p>
+          <p className="text-sm text-ash">{response.reasoning_mode === 'general' ? s.generalNoSources : s.noSources}</p>
         ) : (
           <ol className="mt-2 space-y-2">
             {response.sources.map((src) => (
@@ -187,10 +188,15 @@ export function AnswerCard({ response, messageId }: { response: ChatResponse; me
                     .filter(Boolean)
                     .join(' · ')}
                 </p>
-                <p className="mt-1 text-xs text-slate">
-                  {src.id} · {Math.round(src.relevance * 100)}% {s.relevance}
-                  {src.effective_date ? ` · ${s.effective} ${src.effective_date}` : ''}
-                </p>
+                {src.id.startsWith('CANGGU-AWIG-2012-ID::') && (
+                  <p className="mt-2 text-xs leading-relaxed text-fog">{s.awigTranslationCredit}</p>
+                )}
+                <details className="mt-2 text-xs text-ash">
+                  <summary className="cursor-pointer hover:text-fog">{s.sourceDetails}</summary>
+                  <p className="mt-1 break-all">{src.id}</p>
+                  <p className="mt-1">{s.relevance}: {Math.round(src.relevance * 100)}%. {s.similarityNote}</p>
+                  {src.effective_date && <p className="mt-1">{s.effective}: {src.effective_date}</p>}
+                </details>
                 {src.source_url && (
                   <a
                     href={src.source_url}
@@ -198,7 +204,7 @@ export function AnswerCard({ response, messageId }: { response: ChatResponse; me
                     rel="noopener noreferrer"
                     className="mt-1.5 inline-flex items-center gap-1 text-xs font-medium text-bone underline-offset-2 hover:underline"
                   >
-                    {s.open} <ExternalLink className="size-3" aria-hidden />
+                    {src.id.startsWith('CANGGU-AWIG-2012-ID::') ? s.openOriginal : s.open} <ExternalLink className="size-3" aria-hidden />
                   </a>
                 )}
               </li>

@@ -1,8 +1,10 @@
-# LocalNorm AI — Arsitektur & Workflow Sistem (Detail)
+# Mawacara AI — Arsitektur & Workflow Sistem (Detail)
+
+> Catatan desain dan pengembangan awal. Rincian fitur, jumlah data, dan hasil uji di sini merupakan snapshot pada saat dokumen dibuat. Implementasi saat ini dijelaskan dalam [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md), sumber terbaru dalam [SOURCE_REFERENCES.md](SOURCE_REFERENCES.md), dan konfigurasi produksi dalam [DEPLOYMENT.md](DEPLOYMENT.md).
 
 > **Pembaruan 2026-11-05 — knowledge base v2.** 13 skenario buatan tangan yang dijelaskan di bawah sudah dipensiunkan. Sistem kini memakai knowledge base dari folder `Database/` (peraturan Bali, pararem dan awig-awig Desa Adat Canggu, paket riset) yang diproses lewat pipeline 6 tahap, disimpan di PostgreSQL + pgvector, dengan terjemahan pertanyaan EN↔ID dan kutipan sumber apa adanya. Bila dokumen ini berbeda dengan [KNOWLEDGE_BASE_V2.md](KNOWLEDGE_BASE_V2.md), **yang berlaku adalah KNOWLEDGE_BASE_V2.md**. Bagian yang berubah: §9 (ingest → pipeline 6 tahap), §10 (skema → `knowledge_documents` + `knowledge_chunks`), §5 (terjemahan query, filter applicability, kutipan), dan §15 (evaluasi v2).
 
-Dokumen ini menjelaskan seluruh sistem LocalNorm AI dari ujung ke ujung: komponen, alur data, alur RAG, basis pengetahuan, database, frontend, pengujian, dan deployment. Setiap diagram Mermaid diikuti keterangan. Status "terverifikasi / belum" di bagian akhir mengacu pada hasil yang benar-benar dijalankan pada 2026-11-03.
+Dokumen ini menjelaskan seluruh sistem Mawacara AI dari ujung ke ujung: komponen, alur data, alur RAG, basis pengetahuan, database, frontend, pengujian, dan deployment. Setiap diagram Mermaid diikuti keterangan. Status "terverifikasi / belum" di bagian akhir mengacu pada hasil yang benar-benar dijalankan pada 2026-11-03.
 
 Daftar isi:
 
@@ -28,7 +30,7 @@ Daftar isi:
 
 ## 1. Gambaran besar
 
-LocalNorm AI adalah asisten etika sosial-budaya untuk wisatawan dan pendatang di Canggu. Pengguna bertanya dalam bahasa Indonesia atau Inggris. Sistem **tidak menjawab dari "pengetahuan umum" model AI**, melainkan:
+Mawacara AI adalah asisten etika sosial-budaya untuk wisatawan dan pendatang di Canggu. Pengguna bertanya dalam bahasa Indonesia atau Inggris. Sistem **tidak menjawab dari "pengetahuan umum" model AI**, melainkan:
 
 1. mencari dokumen yang relevan di **basis pengetahuan terkurasi** (13 skenario × 2 bahasa = 26 potongan/chunk),
 2. menyaring hasil yang benar-benar relevan,
@@ -292,7 +294,7 @@ flowchart TD
   A -- Tidak --> B{"Ada chunk lolos<br/>filter relevansi?"}
   B -- Tidak --> C{"Kategori terdeteksi<br/>ATAU minta aturan adat?"}
   C -- Ya --> NM["retrieval_status = NO_MATCH<br/>'Belum ada informasi terverifikasi… tidak akan menebak'<br/>+ tindakan: tanya host · kelian banjar · Desa Adat"]
-  C -- Tidak --> OT["retrieval_status = OFF_TOPIC<br/>'LocalNorm hanya membahas etika sosial…'"]
+  C -- Tidak --> OT["retrieval_status = OFF_TOPIC<br/>'Mawacara AI hanya membahas etika sosial…'"]
   B -- Ya --> D{"Skor teratas ≥ 0.84?"}
   D -- Ya --> M["retrieval_status = MATCHED"]
   D -- Tidak --> W["retrieval_status = WEAK_MATCH<br/>+ caveat 'hanya sebagian sesuai'"]
@@ -313,7 +315,7 @@ flowchart LR
   R["Jawaban + sumber terpakai"] --> C1{"Ada sumber tidak VERIFIED?"}
   C1 -- Ya --> K1["'Sumber belum diverifikasi peninjau lokal'"]
   R --> C2{"Ada sumber DEMO_DATA?"}
-  C2 -- Ya --> K2["'Sebagian adalah saran umum tim LocalNorm (DEMO_DATA)'"]
+  C2 -- Ya --> K2["'Sebagian adalah saran umum tim Mawacara AI (DEMO_DATA)'"]
   R --> C3{"Tidak ada sumber<br/>bercakupan canggu?"}
   C3 -- Ya --> K3["'Berlaku untuk Bali/Indonesia secara umum;<br/>tidak ada aturan khusus Canggu'"]
   R --> C4{"user = newcomer DAN<br/>sumber applies_to = foreign_tourist?"}

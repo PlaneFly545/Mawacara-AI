@@ -74,7 +74,7 @@ export const FIXTURE_CHUNKS: KbChunk[] = [
     applicable_to: ['tamiu', 'krama_adat'],
     source_type: 'OFFICIAL',
     source_subtype: 'customary_law',
-    source_url: null,
+    source_url: 'https://jidhat.baliprov.go.id/awig-awig/detail/212',
     page_number: 18,
     page_ref_type: 'original_scan_page',
     language: 'id',

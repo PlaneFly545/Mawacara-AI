@@ -1,5 +1,7 @@
 # UX Specification
 
+> Catatan desain dan pengembangan awal. Rincian fitur, jumlah data, dan hasil uji di sini merupakan snapshot pada saat dokumen dibuat. Implementasi saat ini dijelaskan dalam [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md), sumber terbaru dalam [SOURCE_REFERENCES.md](SOURCE_REFERENCES.md), dan konfigurasi produksi dalam [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ## Design direction
 
 **v2 (current): "black velvet gallery".** Pure black canvas with monochrome UI chrome. The only colour on screen is the hero painting (`web/public/hero-pura.webp`). The hero layout follows a reference the team supplied: a full-bleed image, a small uppercase label, a large serif headline and a centred translucent prompt box with chips on the left and a light action button on the right. The token system follows the team's supplied style reference (FLORA-like).
@@ -42,7 +44,7 @@ Warm sand background, clay accent, Fraunces + Inter, and colour-coded badges (bl
      - **Right column:** the **"Set your context" form as a glass panel**: Tourist/Newcomer cards, the Canggu location, answer language and *Start asking →*. *Start asking* opens the chat directly.
    - The form is a shared `ContextForm` component, so the hero and the standalone Setup page (reached from the chat header chip) stay identical. Settings are controlled by `App`, so choosing a language in the form re-renders the hero copy immediately.
    - History: v2a let users type a question in the hero; v2b used a *Get started* button that opened Setup. The current v2c puts Setup inside the hero (team request), so users pick their context before every first question.
-   - Below the hero, on black: an editorial heading "Every answer shows *where* it comes from." with a description; three numbered cards (01/02/03); a label-legend card; a "What LocalNorm is not" card.
+   - Below the hero, on black: an editorial heading "Every answer shows *where* it comes from." with a description; three numbered cards (01/02/03); a label-legend card; a "What Mawacara AI is not" card.
 2. **Setup** — *I am a…* Tourist / Newcomer (radio cards with hints); Location select with only *Canggu, Badung* and the note "Other areas are not part of this pilot"; answer language EN / Bahasa Indonesia; *Start asking*.
 3. **Chat**
    - Header chip `Canggu · Tourist · EN` returns to setup.

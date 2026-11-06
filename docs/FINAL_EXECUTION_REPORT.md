@@ -1,10 +1,12 @@
-# Final Execution Report — LocalNorm AI MVP
+# Final Execution Report — Mawacara AI MVP
+
+> Catatan desain dan pengembangan awal. Rincian fitur, jumlah data, dan hasil uji di sini merupakan snapshot pada saat dokumen dibuat. Implementasi saat ini dijelaskan dalam [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md), sumber terbaru dalam [SOURCE_REFERENCES.md](SOURCE_REFERENCES.md), dan konfigurasi produksi dalam [DEPLOYMENT.md](DEPLOYMENT.md).
 
 Date: 2026-11-03
 
 ## 1. Executive summary
 
-A working, locally runnable LocalNorm AI MVP was built: a bilingual (EN/ID) React web app and an Express API running a retrieval-augmented pipeline over a 13-scenario knowledge base with real multilingual embeddings. Every answer is cited, classified (official regulation / community-verified / general advice), marked with its verification status and applicability, and the system falls back honestly when it has no reliable source. 53 automated tests pass and a 28-scenario evaluation was measured.
+A working, locally runnable Mawacara AI MVP was built: a bilingual (EN/ID) React web app and an Express API running a retrieval-augmented pipeline over a 13-scenario knowledge base with real multilingual embeddings. Every answer is cited, classified (official regulation / community-verified / general advice), marked with its verification status and applicability, and the system falls back honestly when it has no reliable source. 53 automated tests pass and a 28-scenario evaluation was measured.
 
 Three things are **not** verified: (1) live LLM generation — the only Gemini key available was invalid, so all measured answers are extractive; (2) the PostgreSQL + pgvector path — implemented but not executed because Docker Desktop failed to start; (3) production deployment — not done. Retrieval generalises poorly to unseen wording (3/7 on the held-out set), failing safely.
 

@@ -1,10 +1,12 @@
-# Product Requirements Document — LocalNorm AI
+# Product Requirements Document — Mawacara AI
+
+> Catatan desain dan pengembangan awal. Rincian fitur, jumlah data, dan hasil uji di sini merupakan snapshot pada saat dokumen dibuat. Implementasi saat ini dijelaskan dalam [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md), sumber terbaru dalam [SOURCE_REFERENCES.md](SOURCE_REFERENCES.md), dan konfigurasi produksi dalam [DEPLOYMENT.md](DEPLOYMENT.md).
 
 Version 0.1 (MVP) · 2026-11-03 · Bali DigiFest 2026, category *Bali Smart Society*
 
 ## 1. Product overview
 
-LocalNorm AI is a web assistant that answers everyday etiquette questions for tourists and newcomers in **Canggu, Badung, Bali**. It retrieves guidance from a small curated knowledge base and returns an answer that always shows *where it came from* and *what kind of source it is* (official regulation, community-verified guideline, or general advice).
+Mawacara AI is a web assistant that answers everyday etiquette questions for tourists and newcomers in **Canggu, Badung, Bali**. It retrieves guidance from a small curated knowledge base and returns an answer that always shows *where it came from* and *what kind of source it is* (official regulation, community-verified guideline, or general advice).
 
 ## 2. Product vision
 
@@ -25,7 +27,7 @@ This statement is a **hypothesis**, not an established finding.
 | A chat interface is preferred over a static guide | Not validated | A/B or usability test |
 | Local communities want this information shared this way | **Not validated** | Must be discussed with Desa Adat Canggu / banjar representatives before claiming community endorsement |
 
-LocalNorm does **not** claim to reduce conflict, overtourism or structural problems in Bali.
+Mawacara AI does **not** claim to reduce conflict, overtourism or structural problems in Bali.
 
 ## 5. Target users and personas
 

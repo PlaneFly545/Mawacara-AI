@@ -104,25 +104,26 @@ Latest measured results are in [docs/TESTING.md](docs/TESTING.md).
 
 ## Deployment
 
-Production: **https://mawacara.vercel.app**. The repository root deploys the Vite frontend and Express API together on Vercel. `npm run build:vercel` builds the app and bundles the local embedding model plus 120 precomputed knowledge chunks and their vectors. SumoPod credentials are configured as server-only production environment variables. Production uses `KB_SOURCE=files` to load the precomputed vectors into memory for search. PostgreSQL/pgvector is optional. Conversation history and feedback are temporary. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+Production: **https://mawacara.vercel.app**. The repository root deploys the Vite frontend and Express API together on Vercel. `npm run build:vercel` builds the app and bundles the local embedding model plus 120 precomputed knowledge chunks and their vectors. SumoPod credentials are configured as server-only production environment variables. Production uses Supabase PostgreSQL with `KB_SOURCE=pgvector`, 24 documents, and 120 knowledge chunks. TLS verifies the database certificate with `DATABASE_SSL_CA`. Feedback is stored in PostgreSQL, while conversation history remains temporary. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Documentation
 
 | Doc | |
 |---|---|
 | [PROJECT_AUDIT](docs/PROJECT_AUDIT.md) | Phase 0 inspection, risks, strategy |
-| [PRD](docs/PRD.md) | Requirements, personas, acceptance criteria |
+| [PRD](docs/PRD.md) | Initial requirements and personas; implementation has since evolved |
 | [ARCHITECTURE](docs/ARCHITECTURE.md) | System, RAG, ingestion, user-flow diagrams |
 | [KNOWLEDGE_BASE_V2](docs/KNOWLEDGE_BASE_V2.md) | **Current knowledge base: 6-stage pipeline, gate decisions, schema, retrieval, evaluation** |
 | [DATA_MODEL](docs/DATA_MODEL.md) | Data model (v1 sections superseded by KNOWLEDGE_BASE_V2) |
-| [AI_IMPLEMENTATION](docs/AI_IMPLEMENTATION.md) | Pipeline, thresholds, safety behaviour |
+| [AI_IMPLEMENTATION](docs/AI_IMPLEMENTATION.md) | Current pipeline, thresholds, and safety behaviour |
+| [SOURCE_REFERENCES](docs/SOURCE_REFERENCES.md) | Source URLs, translation credit, and reference corrections |
 | [API_DOCUMENTATION](docs/API_DOCUMENTATION.md) | Endpoints, schemas, errors, examples |
-| [UX_SPECIFICATION](docs/UX_SPECIFICATION.md) | Design tokens, views, accessibility |
+| [UX_SPECIFICATION](docs/UX_SPECIFICATION.md) | Initial interface specification; historical design reference |
 | [TESTING](docs/TESTING.md) | Tests, eval scenarios, measured results |
 | [DEPLOYMENT](docs/DEPLOYMENT.md) · [SECURITY](docs/SECURITY.md) | Ops and security |
 | [PRODUCT_LIMITATIONS](docs/PRODUCT_LIMITATIONS.md) | Everything that is not done or not verified |
 | [COMPETITION_ALIGNMENT](docs/COMPETITION_ALIGNMENT.md) | Rubric mapping with evidence and gaps |
-| [FINAL_EXECUTION_REPORT](docs/FINAL_EXECUTION_REPORT.md) | What was built and verified |
+| [FINAL_EXECUTION_REPORT](docs/FINAL_EXECUTION_REPORT.md) | Historical report of the first MVP, not the current deployment |
 
 ## Known limitations
 
@@ -132,5 +133,5 @@ Production: **https://mawacara.vercel.app**. The repository root deploys the Vit
 - **Without an LLM**, English users get an English framing sentence plus the **Indonesian** rule text, because machine translation was shown to change rule meaning.
 - Category/applicability metadata were assigned by keyword rules and need human review; untagged awig-awig articles default to *krama adat*.
 - Evaluation: 25/26 (round 1) and 10/11 (round 2) on scenarios written before running the system; exploratory probes still show wrong-but-labelled answers (e.g. rent prices, registering with the banjar).
-- On Vercel, query translation uses the LLM (or glossary terms without a key) instead of the local OPUS-MT models, which exceed the function size limit; this variant has not been evaluated. Feedback in `/tmp` is temporary. Docker image not built.
+- On Vercel, query translation uses the LLM (or glossary terms without a key) instead of the local OPUS-MT models, which exceed the function size limit; this variant has not been evaluated. Production feedback is persisted in Supabase. Docker image not built.
 - Not legal advice. Full list: [docs/PRODUCT_LIMITATIONS.md](docs/PRODUCT_LIMITATIONS.md).

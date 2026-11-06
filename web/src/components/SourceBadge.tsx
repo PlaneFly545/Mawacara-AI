@@ -28,8 +28,8 @@ export function SourceBadge({ type, lang }: { type: SourceType; lang: Language }
 export function SourceLegend({ lang }: { lang: Language }) {
   return (
     <ul className="space-y-3 text-sm text-fog">
-      {(Object.keys(SOURCE_TYPE_LABEL) as SourceType[]).map((type) => (
-        <li key={type} className="flex flex-wrap items-center gap-2">
+      {(['OFFICIAL_REGULATION', 'CUSTOMARY_RULE', 'GENERAL_ADVISORY'] as SourceType[]).map((type) => (
+        <li key={type} className="flex flex-col items-start gap-2">
           <SourceBadge type={type} lang={lang} />
           <span>{SOURCE_TYPE_LABEL[type][lang].hint}</span>
         </li>

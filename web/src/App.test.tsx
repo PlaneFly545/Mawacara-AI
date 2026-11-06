@@ -22,7 +22,7 @@ const answer: ChatResponse = {
       title: 'Awig-Awig Desa Adat Canggu 2012 (terjemahan tidak resmi) — Pasal 4',
       document_title: 'Awig-Awig Desa Adat Canggu (naskah 2012)',
       source_name: 'Awig-Awig Desa Adat Canggu (naskah 2012)',
-      source_url: 'https://jidhat.baliprov.go.id/storage/perarem/example.pdf',
+      source_url: 'https://jidhat.baliprov.go.id/awig-awig/detail/212',
       source_type: 'CUSTOMARY_RULE',
       validation_status: 'UNDER_REVIEW',
       effective_date: null,
@@ -97,13 +97,19 @@ describe('AnswerCard', () => {
     // Awig-awig is a customary village rule, never shown as a government regulation.
     expect(screen.getAllByText('Customary rule').length).toBeGreaterThan(0);
     expect(screen.queryByText('Government regulation')).toBeNull();
-    // Verbatim quote in its original language, with article, original-scan page and source flags.
-    expect(screen.getByText(/Source text · original, Indonesian/)).toBeInTheDocument();
+    // The Indonesian excerpt must be identified as a translation of the Balinese source.
+    expect(screen.getByText(/Translated excerpt · Indonesian/)).toBeInTheDocument();
     expect(screen.getByText(answer.quote!.text)).toHaveAttribute('lang', 'id');
     expect(screen.getByText('Pasal 4 · page 18 of the original scan')).toBeInTheDocument();
-    expect(screen.getByText('Unofficial translation')).toBeInTheDocument();
-    expect(screen.getByText('Under review')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /open source/i })).toHaveAttribute('href', answer.sources[0].source_url);
+    expect(screen.getByText('Indonesian translation')).toBeInTheDocument();
+    expect(screen.getByText(/Indonesian translation prepared by the Mawacara AI team/)).toBeInTheDocument();
+    expect(screen.queryByText('Original link unknown')).toBeNull();
+    expect(screen.getByText(answer.sources[0].id)).not.toBeVisible();
+    fireEvent.click(screen.getByText('Source details'));
+    expect(screen.getByText(answer.sources[0].id)).toBeVisible();
+    expect(screen.getByText(/not answer accuracy/)).toBeVisible();
+    expect(screen.getByText('Local review pending')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /read the original on JIDHAT/i })).toHaveAttribute('href', answer.sources[0].source_url);
   });
 
   it('shows an explicit no-source message for fallbacks', () => {
